@@ -1,5 +1,7 @@
 puts 'Destroying Database...'
 
+PlantTag.destroy_all if Rails.env.development?
+Tag.destroy_all if Rails.env.development?
 Plant.destroy_all if Rails.env.development?
 Garden.destroy_all if Rails.env.development?
 
@@ -40,3 +42,14 @@ Plant.create!(
 )
 
 puts "#{Plant.count} Plants created !"
+
+puts "Creating Tags..."
+
+names = ["Fruit tree", "Cactus", "Greasy plant", "Flower", "Ferns", "Conifers"]
+# names = %w(Fruit\ tree Cactus Greasy\ plant Flower Ferns Conifers)
+
+names.each do |name|
+  Tag.create(name: name)
+end
+
+puts "#{Tag.count} Tags created !"
